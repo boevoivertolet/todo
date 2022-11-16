@@ -6,10 +6,11 @@ type TodolistComponentPropsType = {
     title: string
     tasks: Array<TaskType>
     removeTask: (id: string) => void
-    changeFilter: (filter: FilterValueType) => void
+    changeFilter: (filter: FilterValueType, tlId: string) => void
     addTask: (title: string) => void
     changeStatus: (id: string, isDone: boolean) => void
     filter: FilterValueType
+    tlId: string
 }
 
 export const Todolist = (props: TodolistComponentPropsType) => {
@@ -55,13 +56,13 @@ export const Todolist = (props: TodolistComponentPropsType) => {
         }
     }
     const changeFilterAll = () => {
-        props.changeFilter('all')
+        props.changeFilter('all', props.tlId)
     }
     const changeFilterCompleted = () => {
-        props.changeFilter('completed')
+        props.changeFilter('completed', props.tlId)
     }
     const changeFilterActive = () => {
-        props.changeFilter('active')
+        props.changeFilter('active', props.tlId)
     }
 
 
