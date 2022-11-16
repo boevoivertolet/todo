@@ -1,11 +1,11 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {FilterValueType, TaskType} from './App';
+import {FilterValueType, TasksType, TaskType} from './App';
 
 
 type TodolistComponentPropsType = {
     title: string
-    tasks: Array<TaskType>
-    removeTask: (id: string) => void
+    tasks: TasksType
+    removeTask: (id: string, tlId: string) => void
     changeFilter: (filter: FilterValueType, tlId: string) => void
     addTask: (title: string) => void
     changeStatus: (id: string, isDone: boolean) => void
@@ -23,11 +23,11 @@ export const Todolist = (props: TodolistComponentPropsType) => {
     }
 
 
-    const tasks = props.tasks.map(t => {
+    const tasks = props.tasks[props.tlId].map(t => {
         const inputOnChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             props.changeStatus(t.id, e.currentTarget.checked)
         }
-        const onRemoveHandler = () => props.removeTask(t.id)
+        const onRemoveHandler = () => props.removeTask(t.id, props.tlId)
         return <li className={t.isDone ? 'is-done' : ''} key={t.id}><input onChange={inputOnChangeHandler}
                                                                            type="checkbox" checked={t.isDone}/>
             <span>{t.title}</span>
