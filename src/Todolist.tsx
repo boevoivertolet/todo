@@ -1,5 +1,5 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {FilterValueType, TasksType, TaskType} from './App';
+import React, {ChangeEvent, KeyboardEvent,MouseEvent, useState} from 'react';
+import {FilterValueType,  TaskType} from './App';
 
 
 type TodolistComponentPropsType = {
@@ -11,6 +11,7 @@ type TodolistComponentPropsType = {
     changeStatus: (id: string, isDone: boolean, tlId: string) => void
     filter: FilterValueType
     tlId: string
+    removeTodolist:(tlId: string)=> void
 }
 
 export const Todolist = (props: TodolistComponentPropsType) => {
@@ -64,11 +65,14 @@ export const Todolist = (props: TodolistComponentPropsType) => {
     const changeFilterActive = () => {
         props.changeFilter('active', props.tlId)
     }
+    const removeTodolist = (e: MouseEvent<HTMLButtonElement>) => {
+      props.removeTodolist(props.tlId)
+    }
 
 
     return (
         <div>
-            <h3>{props.title}</h3>
+            <h3>{props.title} <button onClick={removeTodolist}>x</button></h3>
             <div>
                 <input
                     className={error ? 'error' : ''}
