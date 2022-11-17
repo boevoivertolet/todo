@@ -14,6 +14,7 @@ type TodolistComponentPropsType = {
     filter: FilterValueType
     tlId: string
     removeTodolist: (tlId: string) => void
+    changeTaskTitle: (id: string, title: string, tlId: string) => void
 }
 
 export const Todolist = (props: TodolistComponentPropsType) => {
@@ -48,11 +49,13 @@ export const Todolist = (props: TodolistComponentPropsType) => {
         const inputOnChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             props.changeStatus(t.id, e.currentTarget.checked, props.tlId)
         }
+        const onChangeTitleHandler = (title: string) => {
+            props.changeTaskTitle(t.id, title, props.tlId)
+        }
         const onRemoveHandler = () => props.removeTask(t.id, props.tlId)
         return <li className={t.isDone ? 'is-done' : ''} key={t.id}><input onChange={inputOnChangeHandler}
                                                                            type="checkbox" checked={t.isDone}/>
-            <EditableSpan title={t.title} />
-            {/*<span>{t.title}---------</span>*/}
+            <EditableSpan title={t.title} onChange={onChangeTitleHandler}/>
             <button onClick={onRemoveHandler}>x</button>
 
         </li>
