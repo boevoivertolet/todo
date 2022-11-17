@@ -74,35 +74,39 @@ function App() {
 
     return (
         <div className="App">
-            <AddItemForm addItem={addTodo}/>
-            {
-                todolists.map(tl => {
-                    let filteredTasks = tasks[tl.id];
-                    if (tl.filter === 'completed') {
-                        filteredTasks = filteredTasks.filter(t => t.isDone);
-                    }
-                    if (tl.filter === 'active') {
-                        filteredTasks = filteredTasks.filter(t => !t.isDone);
-                    }
+            <div className="container">
+                <div className={'addItem'}><AddItemForm addItem={addTodo}/></div>
+
+                {
+                    todolists.map(tl => {
+                        let filteredTasks = tasks[tl.id];
+                        if (tl.filter === 'completed') {
+                            filteredTasks = filteredTasks.filter(t => t.isDone);
+                        }
+                        if (tl.filter === 'active') {
+                            filteredTasks = filteredTasks.filter(t => !t.isDone);
+                        }
 
 
-                    return <Todolist
-                        addTask={addTask}
-                        title={tl.title}
-                        tasks={filteredTasks}
-                        removeTask={removeTask}
-                        changeFilter={changeFilter}
-                        changeStatus={changeStatus}
-                        filter={tl.filter}
-                        key={tl.id}
-                        tlId={tl.id}
-                        removeTodolist={removeTodolist}
-                        changeTaskTitle={changeTaskTitle}
-                        changeTodoTitle={changeTodoTitle}
-                    />
-                })
-            }
-
+                        return <div className={'todo'}>
+                            <Todolist
+                                addTask={addTask}
+                                title={tl.title}
+                                tasks={filteredTasks}
+                                removeTask={removeTask}
+                                changeFilter={changeFilter}
+                                changeStatus={changeStatus}
+                                filter={tl.filter}
+                                key={tl.id}
+                                tlId={tl.id}
+                                removeTodolist={removeTodolist}
+                                changeTaskTitle={changeTaskTitle}
+                                changeTodoTitle={changeTodoTitle}
+                            />
+                        </div>
+                    })
+                }
+            </div>
         </div>
     );
 }

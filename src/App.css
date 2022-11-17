@@ -1,16 +1,24 @@
 .App {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #c3c2c2;
+}
 
+.container {
+    height: auto;
+    border: 1px solid;
+    width: auto;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
-    flex-direction: column;
-;
-}
-
-.App > div {
-    margin-right: 50px;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
     padding: 30px;
 }
+
 
 .error {
     border: red 2px solid;
@@ -20,10 +28,40 @@
     color: red;
 }
 
-.active-filter {
-    background-color: cyan;
-}
+/*.active-filter {*/
+/*    background-color: cyan;*/
+/*}*/
 
 .is-done {
     opacity: 0.5;
 }
+
+.todo {
+    width: 360px;
+    text-align: center;
+    border: 1px solid;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: auto;
+    margin: 20px;
+
+}
+
+.addItem {
+    padding: 30px;
+}
+
+.buttonsBlock {
+    display: flex;
+    border: 1px solid;
+}
+
+.tasks {
+    border: 1px solid;
+    min-height: 100px   ;
+}
+
+
