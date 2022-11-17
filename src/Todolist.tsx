@@ -15,6 +15,7 @@ type TodolistComponentPropsType = {
     tlId: string
     removeTodolist: (tlId: string) => void
     changeTaskTitle: (id: string, title: string, tlId: string) => void
+    changeTodoTitle: (title: string, tlId: string) => void
 }
 
 export const Todolist = (props: TodolistComponentPropsType) => {
@@ -76,10 +77,13 @@ export const Todolist = (props: TodolistComponentPropsType) => {
     const addTask = (title: string) => {
         props.addTask(title, props.tlId)
     }
+    const onChangeTodoTitleHandler = (title: string) => {
+      props.changeTodoTitle(title, props.tlId)
+    }
 
     return (
         <div>
-            <h3>{props.title}
+            <h3><EditableSpan title={props.title} onChange={onChangeTodoTitleHandler}/>
                 <button onClick={removeTodolist}>x</button>
             </h3>
             {/* <div>

@@ -40,16 +40,16 @@ function App() {
             {id: v1(), title: 'JS', isDone: true},
             {id: v1(), title: 'React', isDone: false},
         ]
-     /*   [tlId1]: [
-            {id: v1(), title: 'CSS', isDone: true},
-            {id: v1(), title: 'JS', isDone: true},
-            {id: v1(), title: 'React', isDone: false},
-        ],
-        [tlId2]: [
-            {id: v1(), title: 'book', isDone: true},
-            {id: v1(), title: 'milk', isDone: true},
-            {id: v1(), title: 'apple', isDone: false}
-        ]*/
+        /*   [tlId1]: [
+               {id: v1(), title: 'CSS', isDone: true},
+               {id: v1(), title: 'JS', isDone: true},
+               {id: v1(), title: 'React', isDone: false},
+           ],
+           [tlId2]: [
+               {id: v1(), title: 'book', isDone: true},
+               {id: v1(), title: 'milk', isDone: true},
+               {id: v1(), title: 'apple', isDone: false}
+           ]*/
     });
 
 
@@ -66,10 +66,10 @@ function App() {
     }
     const addTask = (title: string, tlId: string) => {
         let task = {id: v1(), title: title, isDone: false}
-       /* let arrTasks = tasks[tlId];
-        let newTask = [task, ...arrTasks]
-        tasks[tlId] = newTask
-        setTasks({...tasks})*/
+        /* let arrTasks = tasks[tlId];
+         let newTask = [task, ...arrTasks]
+         tasks[tlId] = newTask
+         setTasks({...tasks})*/
         setTasks({...tasks, [tlId]: tasks[tlId] = [...tasks[tlId], task]})
     }
     const changeStatus = (id: string, isDone: boolean, tlId: string) => {
@@ -87,6 +87,9 @@ function App() {
     }
     const changeTaskTitle = (id: string, title: string, tlId: string) => {
         setTasks({...tasks, [tlId]: tasks[tlId].map(t => t.id === id ? {...t, title: title} : t)})
+    }
+    const changeTodoTitle = (title: string, tlId: string) => {
+        setTodolist(todolists.map(tl => tl.id === tlId ? {...tl, title: title} : tl))
     }
 
 
@@ -116,6 +119,7 @@ function App() {
                         tlId={tl.id}
                         removeTodolist={removeTodolist}
                         changeTaskTitle={changeTaskTitle}
+                        changeTodoTitle={changeTodoTitle}
                     />
                 })
             }
