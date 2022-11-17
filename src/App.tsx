@@ -56,10 +56,11 @@ function App() {
     }
     const addTask = (title: string, tlId: string) => {
         let task = {id: v1(), title: title, isDone: false}
-        let arrTasks = tasks[tlId];
-        let newTask = [task, ...arrTasks]
-        tasks[tlId] = newTask
-        setTasks({...tasks})
+        // let arrTasks = tasks[tlId];
+        // let newTask = [task, ...arrTasks]
+        // tasks[tlId] = newTask
+        // setTasks({...tasks})
+        setTasks({...tasks, [tlId]: tasks[tlId] = [...tasks[tlId], task]})
     }
     const changeStatus = (id: string, isDone: boolean, tlId: string) => {
         setTasks({...tasks, [tlId]: tasks[tlId].map(t => t.id === id ? {...t, isDone: isDone} : t)})
