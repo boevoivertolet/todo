@@ -2,7 +2,8 @@ import React, {ChangeEvent, MouseEvent} from 'react';
 import {FilterValueType, TaskType} from './App';
 import {AddItemForm} from './AddItemForm';
 import {EditableSpan} from './EditableSpan';
-import {Button, Checkbox} from '@material-ui/core';
+import {Button, Checkbox, IconButton} from '@material-ui/core';
+import {Delete} from '@material-ui/icons';
 
 
 type TodolistComponentPropsType = {
@@ -30,12 +31,16 @@ export const Todolist = (props: TodolistComponentPropsType) => {
             props.changeTaskTitle(t.id, title, props.tlId)
         }
         const onRemoveHandler = () => props.removeTask(t.id, props.tlId)
-        return <div className={'task'}> <li className={t.isDone ? 'is-done' : ''} key={t.id}><Checkbox onChange={inputOnChangeHandler} inputProps={{ 'aria-label': 'primary checkbox' }} color="default"
-                                                                                 checked={t.isDone}/>
-            <EditableSpan title={t.title} onChange={onChangeTitleHandler}/>
-            <Button variant="contained" onClick={onRemoveHandler}>x</Button>
+        return <div className={t.isDone ? 'is-done' : ''} >
+            <div className={'task'}  key={t.id}><Checkbox onChange={inputOnChangeHandler}
+                                                                           inputProps={{'aria-label': 'primary checkbox'}}
+                                                                           color="default"
+                                                                           checked={t.isDone}/>
+                <EditableSpan  title={t.title} onChange={onChangeTitleHandler}/>
+                <IconButton  onClick={onRemoveHandler}><Delete/></IconButton>
 
-        </li></div>
+            </div>
+        </div>
     })
 
     const changeFilterAll = () => {
@@ -60,13 +65,12 @@ export const Todolist = (props: TodolistComponentPropsType) => {
     return (
         <div>
             <h3><EditableSpan title={props.title} onChange={onChangeTodoTitleHandler}/>
-                <Button variant="contained" onClick={removeTodolist}>x</Button>
+                <IconButton onClick={removeTodolist}><Delete/></IconButton>
             </h3>
-
             <AddItemForm addItem={addTask}/>
-            <ul className={'tasks'}>
+            <div className={'tasks'}>
                 {tasks}
-            </ul>
+            </div>
             <div className={'buttonsBlock'}>
                 <Button variant="contained" color={props.filter === 'all' ? 'primary' : 'default'}
                         onClick={changeFilterAll}>All</Button>

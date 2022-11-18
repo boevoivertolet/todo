@@ -3,6 +3,7 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './AddItemForm';
+import {Paper} from '@material-ui/core';
 
 type TodolistType = {
     id: string
@@ -61,7 +62,7 @@ function App() {
     }
     const addTodo = (title: string) => {
         let todo: TodolistType = {id: v1(), title: title, filter: 'all'}
-        setTodolist([todo, ...todolists])
+        setTodolist([...todolists, todo])
         setTasks({...tasks, [todo.id]: []})
     }
     const changeTaskTitle = (id: string, title: string, tlId: string) => {
@@ -75,7 +76,7 @@ function App() {
     return (
         <div className="App">
             <div className="container">
-                <div className={'addItem'}><AddItemForm addItem={addTodo}/></div>
+                <Paper elevation={3} className={'addItem'}><AddItemForm addItem={addTodo}/></Paper>
 
                 {
                     todolists.map(tl => {
@@ -88,7 +89,7 @@ function App() {
                         }
 
 
-                        return <div className={'todo'}>
+                        return <Paper elevation={3} className={'todo'}>
                             <Todolist
                                 addTask={addTask}
                                 title={tl.title}
@@ -103,7 +104,7 @@ function App() {
                                 changeTaskTitle={changeTaskTitle}
                                 changeTodoTitle={changeTodoTitle}
                             />
-                        </div>
+                        </Paper>
                     })
                 }
             </div>

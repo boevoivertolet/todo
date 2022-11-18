@@ -34,6 +34,6 @@ export const EditableSpan = (props: EditableSpanComponentPropsType) => {
         ?
         <input onKeyDown={onKeyDownActivateViewMode} onBlur={activateViewMode} onChange={onChangeTitleHandler} autoFocus
                value={title}/>
-        : <span onDoubleClick={activateEditMode}>{props.title}</span>
+        : <span  onDoubleClick={activateEditMode}>{props.title}</span>
 
 }

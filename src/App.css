@@ -1,19 +1,19 @@
 .App {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
     min-height: 100vh;
-    background-color: #c3c2c2;
+    background-color: #f6fef1;
+
 }
 
 .container {
     height: auto;
-    border: 1px solid;
     width: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: start;
     flex-direction: row;
     flex-wrap: wrap;
     padding: 30px;
@@ -28,40 +28,72 @@
     color: red;
 }
 
-/*.active-filter {*/
-/*    background-color: cyan;*/
-/*}*/
-
 .is-done {
     opacity: 0.5;
 }
 
 .todo {
-    width: 360px;
+    width: 300px;
     text-align: center;
-    border: 1px solid;
-    padding: 30px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     flex-direction: column;
     height: auto;
     margin: 20px;
+    min-height: 500px;
+}
 
+h3 {
+    font-size: 35px;
+    margin: 0 auto;
 }
 
 .addItem {
-    padding: 30px;
+    margin: 15px;
+    min-height: 500px;
+
 }
 
 .buttonsBlock {
     display: flex;
-    border: 1px solid;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
 }
 
 .tasks {
-    border: 1px solid;
-    min-height: 100px   ;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    min-height: 200px;
+    width: 260px;
+
+}
+
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 300px;
+    font-size: 16px;
+
+}
+
+.texField {
+    display: flex;
+    flex-direction: column;
+    min-height: 100px;
+
+}
+
+.textField-button {
+    margin: 15px;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    max-height: 50px;
 }
 
 
