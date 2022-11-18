@@ -3,7 +3,8 @@ import './App.css';
 import {Todolist} from './Todolist';
 import {v1} from 'uuid';
 import {AddItemForm} from './AddItemForm';
-import {Paper} from '@material-ui/core';
+import {AppBar, Button, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
+import {Menu} from '@material-ui/icons';
 
 type TodolistType = {
     id: string
@@ -75,6 +76,17 @@ function App() {
 
     return (
         <div className="App">
+            <AppBar position="static">
+                <Toolbar>
+                    <IconButton edge="start"  color="inherit" aria-label="menu">
+                        <Menu />
+                    </IconButton>
+                    <Typography variant="h6" >
+                        News
+                    </Typography>
+                    <Button color="inherit">Login</Button>
+                </Toolbar>
+            </AppBar>
             <div className="container">
                 <Paper elevation={3} className={'addItem'}><AddItemForm addItem={addTodo}/></Paper>
 
@@ -87,8 +99,6 @@ function App() {
                         if (tl.filter === 'active') {
                             filteredTasks = filteredTasks.filter(t => !t.isDone);
                         }
-
-
                         return <Paper elevation={3} className={'todo'}>
                             <Todolist
                                 addTask={addTask}

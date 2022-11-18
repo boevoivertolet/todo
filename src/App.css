@@ -1,8 +1,4 @@
 .App {
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-    justify-content: start;
     min-height: 100vh;
     background-color: #f6fef1;
 
