@@ -52,7 +52,7 @@ export const Todolist = (props: TodolistComponentPropsType) => {
     const changeFilterActive = () => {
         props.changeFilter('active', props.tlId)
     }
-    const removeTodolist = (e: MouseEvent<HTMLButtonElement>) => {
+    const removeTodolist = () => {
         props.removeTodolist(props.tlId)
     }
     const addTask = (title: string) => {
