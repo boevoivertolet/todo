@@ -50,7 +50,6 @@ function App() {
     const changeStatus = (id: string, isDone: boolean, tlId: string) => {
         setTasks({...tasks, [tlId]: tasks[tlId].map(t => t.id === id ? {...t, isDone: isDone} : t)})
     }
-
     const changeTaskTitle = (id: string, title: string, tlId: string) => {
         setTasks({...tasks, [tlId]: tasks[tlId].map(t => t.id === id ? {...t, title: title} : t)})
     }
