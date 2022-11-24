@@ -1,4 +1,4 @@
-import {FilterValueType, TodolistType} from '../../App';
+import {FilterValueType, TodolistType} from '../../AppWithReducers';
 import {v1} from 'uuid';
 
 type ActionType =
@@ -33,7 +33,7 @@ export const todolistsReducer = (state: Array<TodolistType>, action: ActionType)
         case 'REMOVE-TODOLIST':
             return state.filter(tl => tl.id !== action.id)
         case 'ADD-TODOLIST':
-            return [...state, {id: action.tlId, title: action.title, filter: 'all'}]
+            return [{id: action.tlId, title: action.title, filter: 'all'}, ...state]
         case 'CHANGE-TODOLIST-TITLE':
             return state.map(tl => tl.id === action.id ? {...tl, title: action.title} : tl)
         case 'CHANGE-TODOLIST-FILTER':
@@ -42,11 +42,6 @@ export const todolistsReducer = (state: Array<TodolistType>, action: ActionType)
             throw new Error(`I don't understand this type`)
     }
 }
-
-/*type RemoveTodolistActionType = ReturnType<typeof removeTodolistAC>
-type AddTodolistActionType = ReturnType<typeof addTodolistAC>
-type ChangeTodolistTitleActionType = ReturnType<typeof changeTodolistTitleAC>
-type ChangeTodolistFilterActionType = ReturnType<typeof changeTodolistFilterAC>*/
 
 
 export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType => {
@@ -59,13 +54,13 @@ export const addTodolistAC = (title: string): AddTodolistActionType => {
         type: 'ADD-TODOLIST', title: title, tlId: v1()
     } as const
 }
-export const changeTodolistTitleAC = (id: string, title: string): ChangeTodolistTitleActionType => {
+export const changeTodolistTitleAC = (title: string, id: string): ChangeTodolistTitleActionType => {
     return {
         type: 'CHANGE-TODOLIST-TITLE', id: id, title: title
     } as const
 }
-export const changeTodolistFilterAC = (id: string, filter: FilterValueType): ChangeTodolistFilterActionType => {
+export const changeTodolistFilterAC = (filter: FilterValueType, id: string): ChangeTodolistFilterActionType => {
     return {
-        type: 'CHANGE-TODOLIST-FILTER', id: id, filter: filter
+        type: 'CHANGE-TODOLIST-FILTER', filter, id
     } as const
 }
