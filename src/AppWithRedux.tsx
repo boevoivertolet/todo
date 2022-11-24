@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import {Todolist} from './Todolist';
-
 import {AddItemForm} from './AddItemForm';
 import {AppBar, Button, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Menu} from '@material-ui/icons';
@@ -35,6 +34,7 @@ export type TasksType = {
 }
 export type FilterValueType = 'active' | 'all' | 'completed'
 
+
 export const AppWithRedux = () => {
 
     const dispatch = useDispatch()
@@ -44,36 +44,26 @@ export const AppWithRedux = () => {
 
     const removeTask = (id: string, tlId: string) => {
         dispatch(removeTaskAC(id, tlId))
-
-
     }
     const addTask = (title: string, tlId: string) => {
         dispatch(addTaskAC(title, tlId))
-
     }
     const changeStatus = (id: string, isDone: boolean, tlId: string) => {
         dispatch(changeTaskStatusAC(id, isDone, tlId))
-
     }
     const changeTaskTitle = (id: string, title: string, tlId: string) => {
         dispatch(changeTaskTitleAC(id, title, tlId))
-
     }
-
-
     const changeFilter = (filter: FilterValueType, tlId: string) => {
         dispatch(changeTodolistFilterAC(filter, tlId))
     }
     const removeTodolist = (tlId: string) => {
         const action = removeTodolistAC(tlId)
         dispatch(action)
-
     }
     const changeTodoTitle = (title: string, tlId: string) => {
         dispatch(changeTodolistTitleAC(title, tlId))
     }
-
-
     const addTodo = (title: string) => {
         const action = addTodolistAC(title)
         dispatch(action)

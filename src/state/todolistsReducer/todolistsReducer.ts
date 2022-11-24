@@ -28,10 +28,7 @@ type ChangeTodolistFilterActionType = {
 }
 
 
-
-const initialState: Array<TodolistType> = [
-
-]
+const initialState: Array<TodolistType> = []
 
 
 export const todolistsReducer = (state: Array<TodolistType> = initialState, action: ActionType): Array<TodolistType> => {
