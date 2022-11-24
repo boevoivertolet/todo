@@ -20,22 +20,22 @@ import {
     tasksReducer
 } from './state/tasksReducer/tasksReducer';
 
-type TodolistType = {
+export type TodolistType = {
     id: string
     title: string
     filter: FilterValueType
 }
-type TaskType = {
+export type TaskType = {
     id: string
     title: string
     isDone: boolean
 }
-type TasksType = {
+export type TasksType = {
     [key: string]: TaskType[]
 }
-type FilterValueType = 'active' | 'all' | 'completed'
+export type FilterValueType = 'active' | 'all' | 'completed'
 
-const AppWithReducers = () => {
+export const AppWithRedux = () => {
 
     let tlId1 = v1()
     let tlId2 = v1()
@@ -138,7 +138,6 @@ const AppWithReducers = () => {
                                 removeTodolist={removeTodolist}
                                 changeTodoTitle={changeTodoTitle}
                             />
-
                         </Paper>
                     })
                 }
