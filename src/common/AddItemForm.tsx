@@ -1,17 +1,19 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
-import {Button, Paper, TextField} from '@material-ui/core';
+import {Button, TextField} from '@material-ui/core';
 
 
 type AddItemFormComponentPropsType = {
     addItem: (title: string) => void
 
 }
-export const AddItemForm = (props: AddItemFormComponentPropsType) => {
-    const [error, setError] = useState<string>('')
+export const AddItemForm = React.memo((props: AddItemFormComponentPropsType) => {
+
+    console.log('AddItemForm is called')
+    const [error, setError] = useState<string | null>('')
 
     const [title, setTitle] = useState<string>('')
     const setTitleValue = (e: ChangeEvent<HTMLInputElement>) => {
-        setError('')
+        setError(null)
         setTitle(e.currentTarget.value)
     }
     const addTask = () => {
@@ -24,7 +26,7 @@ export const AddItemForm = (props: AddItemFormComponentPropsType) => {
         setTitle('')
     }
     const addTaskForEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Alt' ||  e.key === 'Backspace') {
+        if (e.key === 'Alt' || e.key === 'Backspace') {
             return
         }
         if (title.trim() === '') {
@@ -35,12 +37,13 @@ export const AddItemForm = (props: AddItemFormComponentPropsType) => {
         if (e.key === 'Enter') {
             props.addItem(title)
             setTitle('')
+
         }
     }
 
     return (
         <div className={'texField'}>
-            <div  className={'textField-button'}>
+            <div className={'textField-button'}>
                 <TextField
                     id="standard-basic" label="add todo"
                     className={error ? 'error' : ''}
@@ -53,4 +56,4 @@ export const AddItemForm = (props: AddItemFormComponentPropsType) => {
             {error && <div className={'error-message'}>{error}</div>}
         </div>
     )
-}
+})
