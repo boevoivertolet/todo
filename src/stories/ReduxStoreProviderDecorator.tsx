@@ -1,4 +1,12 @@
 import {tasksReducer} from '../state/tasksReducer/tasksReducer';
+import React from 'react'
+import { Provider } from 'react-redux'
+import {combineReducers,  legacy_createStore} from 'redux'
+import { v1 } from 'uuid'
+import {todolistsReducer} from '../state/todolistsReducer/todolistsReducer';
+import {AppRootStateType} from '../state/store';
+
+
 /*
 import {Provider} from 'react-redux';
 import {store} from '../state/store';
@@ -8,14 +16,6 @@ import {store} from '../state/store';
 export const ReduxStoreProviderDecorator = (storyFn: any) => {
     return <Provider store={store}>{storyFn()}</Provider>
 }*/
-import React from 'react'
-import { Provider } from 'react-redux'
-import {combineReducers, createStore, legacy_createStore} from 'redux'
-import { v1 } from 'uuid'
-import {todolistsReducer} from '../state/todolistsReducer/todolistsReducer';
-import {AppRootStateType} from '../state/store';
-
-
 
 const rootReducer = combineReducers({
     tasks: tasksReducer,

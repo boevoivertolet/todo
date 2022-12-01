@@ -92,11 +92,6 @@ export const Todolist = React.memo((props: TodolistComponentPropsType) => {
                 />)}
 
             </div>
-
-            {/*<div className={'tasks'}>*/}
-            {/*    {tasks}*/}
-            {/*</div>*/}
-
             <div className={'buttonsBlock'}>
                 <Button variant="contained" color={props.filter === 'all' ? 'primary' : 'default'}
                         onClick={changeFilterAll}>All</Button>
