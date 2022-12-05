@@ -7,7 +7,7 @@ import {Menu} from '@material-ui/icons';
 import {
     addTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC,
+    changeTodolistTitleAC, FilterValueType,
     removeTodolistAC,
 } from './state/todolistsReducer/todolistsReducer';
 import {
@@ -18,8 +18,9 @@ import {
 } from './state/tasksReducer/tasksReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
+import {TasksType, TodolistType} from './api/todolists-api';
 
-export type TodolistType = {
+/*export type TodolistType = {
     id: string
     title: string
     filter: FilterValueType
@@ -28,11 +29,13 @@ export type TaskType = {
     id: string
     title: string
     isDone: boolean
+}*/
+export type TasksStateType = {
+    [key: string]: TasksType[]
 }
-export type TasksType = {
-    [key: string]: TaskType[]
-}
-export type FilterValueType = 'active' | 'all' | 'completed'
+
+
+
 
 
 export const AppWithRedux = () => {
