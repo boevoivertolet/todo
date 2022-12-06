@@ -37,10 +37,9 @@ export enum TaskPriorities {
 }
 
 
-export type TasksType = {
+export type TaskType = {
     description: string
     title: string
-    completed: boolean
     status: TaskStatuses
     priority: TaskPriorities
     startDate: string
@@ -54,12 +53,12 @@ export type TasksType = {
 type GetTasksResponseType = {
     error: string | null
     totalCount: number
-    items: TasksType[]
+    items: TaskType[]
 }
 type CreateTasksResponseType = {
     error: string | null
     totalCount: number
-    items: TasksType[]
+    items: TaskType[]
 }
 
 const instance = axios.create(

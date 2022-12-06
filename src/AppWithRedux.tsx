@@ -8,7 +8,7 @@ import {
     addTodolistAC,
     changeTodolistFilterAC,
     changeTodolistTitleAC, FilterValueType,
-    removeTodolistAC,
+    removeTodolistAC, TodolistDomainType,
 } from './state/todolistsReducer/todolistsReducer';
 import {
     addTaskAC,
@@ -18,20 +18,11 @@ import {
 } from './state/tasksReducer/tasksReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
-import {TasksType, TodolistType} from './api/todolists-api';
+import {TaskStatuses, TaskType} from './api/todolists-api';
 
-/*export type TodolistType = {
-    id: string
-    title: string
-    filter: FilterValueType
-}
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}*/
+
 export type TasksStateType = {
-    [key: string]: TasksType[]
+    [key: string]: TaskType[]
 }
 
 
@@ -42,8 +33,8 @@ export const AppWithRedux = () => {
     console.log('App is called')
 
     const dispatch = useDispatch()
-    const todolists = useSelector<AppRootStateType, Array<TodolistType>>((state) => state.todolists)
-    const tasks = useSelector<AppRootStateType, TasksType>((state) => state.tasks)
+    const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>((state) => state.todolists)
+    const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
 
 
     const removeTask = useCallback((id: string, tlId: string) => {
@@ -52,8 +43,8 @@ export const AppWithRedux = () => {
     const addTask = useCallback((title: string, tlId: string) => {
         dispatch(addTaskAC(title, tlId))
     }, [dispatch])
-    const changeStatus = useCallback((id: string, isDone: boolean, tlId: string) => {
-        dispatch(changeTaskStatusAC(id, isDone, tlId))
+    const changeStatus = useCallback((id: string, status: TaskStatuses, tlId: string) => {
+        dispatch(changeTaskStatusAC(id, status, tlId))
     }, [dispatch])
     const changeTaskTitle = useCallback((id: string, title: string, tlId: string) => {
         dispatch(changeTaskTitleAC(id, title, tlId))

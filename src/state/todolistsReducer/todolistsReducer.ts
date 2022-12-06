@@ -27,10 +27,9 @@ type ChangeTodolistFilterActionType = {
     filter: FilterValueType
 }
 
-export type FilterValueType = 'active' | 'all' | 'completed'
-
 const initialState: Array<TodolistDomainType> = []
 
+export type FilterValueType = 'active' | 'all' | 'completed'
 export type TodolistDomainType = TodolistType & { filter: FilterValueType }
 
 
