@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 const settings = {
     withCredentials: true,
     headers: {
