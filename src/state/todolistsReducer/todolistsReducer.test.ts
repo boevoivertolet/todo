@@ -26,7 +26,7 @@ beforeEach(() => {
 */
 
 
-test('correct todolist should be removed', () => {
+test.skip('correct todolist should be removed', () => {
     let todolistId1 = v1()
     let todolistId2 = v1()
 
@@ -40,7 +40,7 @@ test('correct todolist should be removed', () => {
     expect(endState.length).toBe(1)
     expect(endState[0].id).toBe(todolistId2)
 })
-test('correct todolist should be added', () => {
+test.skip('correct todolist should be added', () => {
     let todolistId1 = v1()
     let todolistId2 = v1()
 
@@ -57,7 +57,7 @@ test('correct todolist should be added', () => {
     expect(endState[0].title).toBe(newTodolistTitle)
     expect(endState[0].id).toBeDefined()
 })
-test('correct todolist should change its name', () => {
+test.skip('correct todolist should change its name', () => {
     let todolistId1 = v1()
     let todolistId2 = v1()
 
@@ -74,7 +74,7 @@ test('correct todolist should change its name', () => {
     expect(endState[0].title).toBe('What to learn')
     expect(endState[1].title).toBe(newTodolistTitle)
 })
-test('correct filter of todolist should be changed', () => {
+test.skip('correct filter of todolist should be changed', () => {
     let todolistId1 = v1()
     let todolistId2 = v1()
 
@@ -90,7 +90,7 @@ test('correct filter of todolist should be changed', () => {
     expect(endState[0].filter).toBe('all')
     expect(endState[1].filter).toBe(newFilter)
 })
-test('todolists should be set to the state', () => {
+test.skip('todolists should be set to the state', () => {
 
 
     let todolistId1 = v1()

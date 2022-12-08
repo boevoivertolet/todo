@@ -7,8 +7,8 @@ import {Menu} from '@material-ui/icons';
 import {
     addTodolistAC,
     changeTodolistFilterAC,
-    changeTodolistTitleAC, FilterValueType,
-    removeTodolistAC, setTodolistAC, TodolistDomainType,
+    changeTodolistTitleAC, fetchTodolistsTC, FilterValueType,
+    removeTodolistAC, TodolistDomainType,
 } from './state/todolistsReducer/todolistsReducer';
 import {
     addTaskAC,
@@ -18,7 +18,7 @@ import {
 } from './state/tasksReducer/tasksReducer';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppRootStateType} from './state/store';
-import {TaskStatuses, TaskType, todolistsApi} from './api/todolists-api';
+import {TaskStatuses, TaskType} from './api/todolists-api';
 
 
 export type TasksStateType = {
@@ -35,10 +35,7 @@ export const AppWithRedux = () => {
 
 
     useEffect(() => {
-        todolistsApi.getTodolist()
-            .then(res => {
-                dispatch(setTodolistAC(res.data))
-            })
+        dispatch(fetchTodolistsTC());
     }, [])
 
 

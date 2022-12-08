@@ -78,7 +78,7 @@ export type UpdateTaskType = {
 }
 
 export const todolistsApi = {
-    getTodolist() {
+    getTodolists() {
         return instance.get<Array<TodolistType>>('todo-lists')
     },
     createTodolist(title: string) {

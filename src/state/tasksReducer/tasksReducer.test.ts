@@ -4,7 +4,7 @@ import {TasksStateType} from '../../AppWithRedux';
 import {TaskPriorities, TaskStatuses} from '../../api/todolists-api';
 
 
-test('correct task should be deleted from correct array', () => {
+test.skip('correct task should be deleted from correct array', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {
@@ -83,7 +83,7 @@ test('correct task should be deleted from correct array', () => {
         ]
     })
 })
-test('correct task should be added to correct array', () => {
+test.skip('correct task should be added to correct array', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {
@@ -156,7 +156,7 @@ test('correct task should be added to correct array', () => {
     expect(endState['todolistId2'][0].title).toBe('juce')
     expect(endState['todolistId2'][0].status).toBe(TaskStatuses.New)
 })
-test('status of specified task should be changed', () => {
+test.skip('status of specified task should be changed', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {
@@ -236,7 +236,7 @@ test('status of specified task should be changed', () => {
     expect(endState['todolistId1'].length).toBe(3)
 })
 
-test('title of specified task should be changed', () => {
+test.skip('title of specified task should be changed', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {
@@ -311,7 +311,7 @@ test('title of specified task should be changed', () => {
     expect(endState['todolistId1'].length).toBe(3)
 })
 
-test('new array should be added when new todolist is added', () => {
+test.skip('new array should be added when new todolist is added', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {
@@ -388,7 +388,7 @@ test('new array should be added when new todolist is added', () => {
     expect(endState[newKey]).toEqual([])
 })
 
-test('property with todolistId should be deleted', () => {
+test.skip('property with todolistId should be deleted', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {
@@ -461,7 +461,7 @@ test('property with todolistId should be deleted', () => {
     expect(keys.length).toBe(1)
     expect(endState['todolistId2']).not.toBeDefined()
 })
-test('empty arrays should be added when we set todolists', () => {
+test.skip('empty arrays should be added when we set todolists', () => {
 
 
     const action = setTodolistAC([
