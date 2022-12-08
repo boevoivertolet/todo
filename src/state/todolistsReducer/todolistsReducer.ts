@@ -1,7 +1,7 @@
 import {v1} from 'uuid';
 import {todolistsApi, TodolistType} from '../../api/todolists-api';
-import {AnyAction, Dispatch} from 'redux';
-import {AppActionsType, AppThunk} from '../store';
+import {Dispatch} from 'redux';
+import {AppActionsType} from '../store';
 
 
 
