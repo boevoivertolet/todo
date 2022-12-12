@@ -1,4 +1,4 @@
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from './tasksReducer'
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, setTasksAC, tasksReducer} from './tasksReducer'
 import {addTodolistAC, removeTodolistAC, setTodolistAC} from '../todolistsReducer/todolistsReducer';
 import {TasksStateType} from '../../AppWithRedux';
 import {TaskPriorities, TaskStatuses} from '../../api/todolists-api';
@@ -470,7 +470,6 @@ test.skip('empty arrays should be added when we set todolists', () => {
     ])
 
 
-
     const endState = tasksReducer({}, action)
     const keys = Object.keys(endState)
 
@@ -479,5 +478,84 @@ test.skip('empty arrays should be added when we set todolists', () => {
     expect(endState['2']).toStrictEqual([])
 
 })
+
+test('tasks should be added for todolist', () => {
+
+    const startState: TasksStateType = {
+        'todolistId1': [
+            {
+                id: '1', title: 'CSS', status: TaskStatuses.New,
+                addedDate: '',
+                order: 0,
+                deadline: '',
+                description: '',
+                priority: TaskPriorities.Low,
+                startDate: '',
+                todoListId: 'tlId1'
+            },
+            {
+                id: '2', title: 'JS', status: TaskStatuses.Completed, addedDate: '',
+                order: 0,
+                deadline: '',
+                description: '',
+                priority: TaskPriorities.Low,
+                startDate: '',
+                todoListId: 'tlId1'
+            },
+            {
+                id: '3', title: 'React', status: TaskStatuses.New, addedDate: '',
+                order: 0,
+                deadline: '',
+                description: '',
+                priority: TaskPriorities.Low,
+                startDate: '',
+                todoListId: 'tlId1'
+            }
+        ],
+        'todolistId2': [
+            {
+                id: '1', title: 'bread', status: TaskStatuses.New, addedDate: '',
+                order: 0,
+                deadline: '',
+                description: '',
+                priority: TaskPriorities.Low,
+                startDate: '',
+                todoListId: 'tlId2'
+            },
+            {
+                id: '2', title: 'milk', status: TaskStatuses.Completed, addedDate: '',
+                order: 0,
+                deadline: '',
+                description: '',
+                priority: TaskPriorities.Low,
+                startDate: '',
+                todoListId: 'tlId2'
+            },
+            {
+                id: '3', title: 'tea', status: TaskStatuses.New, addedDate: '',
+                order: 0,
+                deadline: '',
+                description: '',
+                priority: TaskPriorities.Low,
+                startDate: '',
+                todoListId: 'tlId2'
+            }
+        ]
+    }
+
+    const action = setTasksAC(startState['todolistId1'], 'todolistId1')
+
+
+    const endState = tasksReducer({
+        'todolistId2':[],
+        'todolistId1':[]
+    }, action)
+
+
+    expect(endState['todolostId1'].length).toBe(3)
+    expect(endState['todolostId2'].length).toBe(0)
+
+})
+
 
 
