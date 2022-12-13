@@ -14,7 +14,7 @@ import {
     addTaskTC,
     changeTaskStatusAC,
     changeTaskTitleAC,
-    removeTaskTC,
+    removeTaskTC, updateTaskTC,
 } from './state/tasksReducer/tasksReducer';
 
 import {useAppDispatch, useAppSelector} from './state/store';
@@ -51,8 +51,9 @@ export const AppWithRedux = () => {
     }, [dispatch])
 
     const changeStatus = useCallback((id: string, status: TaskStatuses, tlId: string) => {
-        dispatch(changeTaskStatusAC(id, status, tlId))
+        dispatch(updateTaskTC(id, status, tlId))
     }, [dispatch])
+
     const changeTaskTitle = useCallback((id: string, title: string, tlId: string) => {
         dispatch(changeTaskTitleAC(id, title, tlId))
     }, [dispatch])

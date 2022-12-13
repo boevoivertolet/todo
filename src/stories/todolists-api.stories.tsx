@@ -90,7 +90,7 @@ export const CreateTasks = () => {
 
     return <div>{JSON.stringify(state)}</div>
 }
-export const UpdateTasks = () => {
+/*export const UpdateTasks = () => {
     const [state, setState] = useState<any>(null)
     useEffect(() => {
         let tlId = '5f1b215d-c13d-43f1-8762-49519aff9624'
@@ -103,4 +103,4 @@ export const UpdateTasks = () => {
     }, [])
 
     return <div>{JSON.stringify(state)}</div>
-}
+}*/

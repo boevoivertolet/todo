@@ -54,11 +54,11 @@ type GetTasksResponseType = {
     totalCount: number
     items: TaskType[]
 }
-type CreateTasksResponseType = {
+/*type CreateTasksResponseType = {
     error: string | null
     totalCount: number
     items: TaskType[]
-}
+}*/
 
 const instance = axios.create(
     {
@@ -70,7 +70,6 @@ const instance = axios.create(
 export type UpdateTaskType = {
     title: string
     description: string
-    completed: boolean
     status: number
     priority: number
     startDate: string
@@ -97,9 +96,9 @@ export const todolistsApi = {
         return instance.delete<ResponseType>(`todo-lists/${tlId}/tasks/${tId}`, settings)
     },
     createTask(tlId: string, title: string) {
-        return instance.post<ResponseType<{item: TaskType}>>(`todo-lists/${tlId}/tasks`, {title})
+        return instance.post<ResponseType<{ item: TaskType }>>(`todo-lists/${tlId}/tasks`, {title})
     },
-    updateTask(tlId: string, tId: string, title: string) {
-        return instance.put<UpdateTaskType>(`todo-lists/${tlId}/tasks/${tId}`, {title})
+    updateTask(tlId: string, tId: string, model: UpdateTaskType) {
+        return instance.put<ResponseType<{ item: TaskType }>>(`todo-lists/${tlId}/tasks/${tId}`, model)
     }
 }
