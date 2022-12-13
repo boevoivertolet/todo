@@ -122,7 +122,9 @@ const AppWithReducers = () => {
 
 
     }
+
     const addTask = (title: string, tlId: string) => {
+        // @ts-ignore
         dispatchTasks(addTaskAC(title, tlId))
 
     }

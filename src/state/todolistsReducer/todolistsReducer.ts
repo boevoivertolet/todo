@@ -89,21 +89,7 @@ export const setTodolistAC = (todolists: Array<TodolistType>): SetTodolistAction
 }
 
 
-/*export const fetchTodolists = (dispatch: Dispatch) => {
-    todolistsApi.getTodolists()
-        .then(res => {
-            dispatch(setTodolistAC(res.data))
-        })
-}*/
-/*export const fetchTodolistsTC = () => {
-    return (dispatch: Dispatch<SetTodolistActionType>) => {
-        todolistsApi.getTodolists()
-            .then(res => {
-                dispatch(setTodolistAC(res.data))
 
-            })
-    }
-}*/
 export const fetchTodolistsTC = () => {
     return (dispatch: Dispatch<AppActionsType>) => {
         todolistsApi.getTodolists()

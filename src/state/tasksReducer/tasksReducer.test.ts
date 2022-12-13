@@ -83,7 +83,7 @@ test.skip('correct task should be deleted from correct array', () => {
         ]
     })
 })
-test.skip('correct task should be added to correct array', () => {
+/*test.skip('correct task should be added to correct array', () => {
     const startState: TasksStateType = {
         'todolistId1': [
             {
@@ -155,7 +155,7 @@ test.skip('correct task should be added to correct array', () => {
     expect(endState['todolistId2'][0].id).toBeDefined()
     expect(endState['todolistId2'][0].title).toBe('juce')
     expect(endState['todolistId2'][0].status).toBe(TaskStatuses.New)
-})
+})*/
 test.skip('status of specified task should be changed', () => {
     const startState: TasksStateType = {
         'todolistId1': [
