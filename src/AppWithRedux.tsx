@@ -5,20 +5,19 @@ import {AddItemForm} from './common/AddItemForm';
 import {AppBar, Button, IconButton, Paper, Toolbar, Typography} from '@material-ui/core';
 import {Menu} from '@material-ui/icons';
 import {
-    addTodolistAC,
+    addTodolistAC, addTodolistsTC,
     changeTodolistFilterAC,
     changeTodolistTitleAC, fetchTodolistsTC, FilterValueType,
     removeTodolistAC, removeTodolistsTC, TodolistDomainType,
 } from './state/todolistsReducer/todolistsReducer';
 import {
     addTaskTC,
-    changeTaskStatusAC,
     changeTaskTitleAC,
     removeTaskTC, updateTaskTC,
 } from './state/tasksReducer/tasksReducer';
 
 import {useAppDispatch, useAppSelector} from './state/store';
-import {TaskStatuses, TaskType, todolistsApi} from './api/todolists-api';
+import {TaskStatuses, TaskType} from './api/todolists-api';
 
 
 export type TasksStateType = {
@@ -31,9 +30,7 @@ export const AppWithRedux = () => {
 
 
     const dispatch = useAppDispatch()
-    // const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>((state) => state.todolists)
     const todolists = useAppSelector<Array<TodolistDomainType>>((state) => state.todolists)
-    // const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
     const tasks = useAppSelector<TasksStateType>(state => state.tasks)
 
 
@@ -68,7 +65,7 @@ export const AppWithRedux = () => {
         dispatch(changeTodolistTitleAC(title, tlId))
     }, [dispatch])
     const addTodo = useCallback((title: string) => {
-        const action = addTodolistAC(title)
+        const action = addTodolistsTC(title)
         dispatch(action)
     }, [dispatch])
 

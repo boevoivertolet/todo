@@ -152,6 +152,7 @@ const AppWithReducers = () => {
 
 
     const addTodo = (title: string) => {
+        // @ts-ignore
         const action = addTodolistAC(title)
         dispatchTasks(action)
         dispatchTodolists(action)

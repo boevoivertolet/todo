@@ -311,6 +311,7 @@ test.skip('title of specified task should be changed', () => {
     expect(endState['todolistId1'].length).toBe(3)
 })
 
+/*
 test.skip('new array should be added when new todolist is added', () => {
     const startState: TasksStateType = {
         'todolistId1': [
@@ -387,6 +388,7 @@ test.skip('new array should be added when new todolist is added', () => {
     expect(keys.length).toBe(3)
     expect(endState[newKey]).toEqual([])
 })
+*/
 
 test.skip('property with todolistId should be deleted', () => {
     const startState: TasksStateType = {

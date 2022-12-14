@@ -43,9 +43,12 @@ export const tasksReducer = (state: TasksStateType = initialState, action: AppAc
                 [action.tlId]: state[action.tlId].map(t => t.id === action.tId ? {...t, title: action.title} : t)
             }
         case 'ADD-TODOLIST': {
-            const stateCopy = {...state};
-            stateCopy[action.tlId] = [];
-            return stateCopy
+            return {
+                ...state,
+                [action.todolist.id]: []
+            };
+
+
         }
         case 'REMOVE-TODOLIST': {
             let stateCopy = {...state};
@@ -135,12 +138,12 @@ export const updateTaskTC = (taskId: string, status: TaskStatuses, todolistId: s
     const task = getState().tasks[todolistId].find(t => t.id === taskId)
     if (task) {
         const model: UpdateTaskType = {
-              title: task.title,
-              status: status,
-              deadline: task.deadline,
-              priority: task.priority,
-              startDate: task.startDate,
-              description: task.description
+            title: task.title,
+            status: status,
+            deadline: task.deadline,
+            priority: task.priority,
+            startDate: task.startDate,
+            description: task.description
 
         }
         todolistsApi.updateTask(todolistId, taskId, model)

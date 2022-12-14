@@ -4,6 +4,7 @@ import {TasksStateType} from '../AppWithRedux';
 
 
 
+/*
 test.skip('ids should be equals', () => {
     const startTasksState: TasksStateType = {}
     const startTodolistsState: Array<TodolistDomainType> = []
@@ -20,4 +21,4 @@ test.skip('ids should be equals', () => {
     expect(idFromTasks).toBe(action.tlId)
     expect(idFromTodolists).toBe(action.tlId)
     expect(idFromTasks === idFromTodolists ).toBe(true)
-})
+})*/
