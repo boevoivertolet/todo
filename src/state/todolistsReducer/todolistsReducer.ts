@@ -4,7 +4,6 @@ import {Dispatch} from 'redux';
 import {AppActionsType} from '../store';
 
 
-
 export type TodolistsActionType =
     RemoveTodolistActionType
     | AddTodolistActionType
@@ -89,7 +88,6 @@ export const setTodolistAC = (todolists: Array<TodolistType>): SetTodolistAction
 }
 
 
-
 export const fetchTodolistsTC = () => {
     return (dispatch: Dispatch<AppActionsType>) => {
         todolistsApi.getTodolists()
@@ -99,5 +97,15 @@ export const fetchTodolistsTC = () => {
             })
     }
 }
+export const removeTodolistsTC = (todolistId: string) => {
+    return (dispatch: Dispatch<AppActionsType>) => {
+        todolistsApi.deleteTodolist(todolistId)
+            .then(res => {
+                dispatch(removeTodolistAC(todolistId))
+
+            })
+    }
+}
+
 
 

@@ -8,7 +8,7 @@ import {
     addTodolistAC,
     changeTodolistFilterAC,
     changeTodolistTitleAC, fetchTodolistsTC, FilterValueType,
-    removeTodolistAC, TodolistDomainType,
+    removeTodolistAC, removeTodolistsTC, TodolistDomainType,
 } from './state/todolistsReducer/todolistsReducer';
 import {
     addTaskTC,
@@ -61,7 +61,7 @@ export const AppWithRedux = () => {
         dispatch(changeTodolistFilterAC(filter, tlId))
     }, [dispatch])
     const removeTodolist = useCallback((tlId: string) => {
-        const action = removeTodolistAC(tlId)
+        const action = removeTodolistsTC(tlId)
         dispatch(action)
     }, [dispatch])
     const changeTodoTitle = useCallback((title: string, tlId: string) => {

@@ -31,20 +31,6 @@ export const tasksReducer = (state: TasksStateType = initialState, action: AppAc
                 ...state,
                 [action.task.todoListId]: [action.task, ...state[action.task.todoListId]]
 
-                /* ...state,
-                 [action.tlId]: state[action.tlId] = [{
-                     id: v1(),
-                     title: action.title,
-                     status: TaskStatuses.New,
-                     todoListId: action.tlId,
-                     addedDate: '',
-                     order: 0,
-                     deadline: '',
-                     description: '',
-                     priority: TaskPriorities.Low,
-                     startDate: ''
-
-                 }, ...state[action.tlId]]*/
             }
         case 'CHANGE-STATUS':
             return {
@@ -155,8 +141,7 @@ export const updateTaskTC = (taskId: string, status: TaskStatuses, todolistId: s
               priority: task.priority,
               startDate: task.startDate,
               description: task.description
-           /* ...task,
-            status*/
+
         }
         todolistsApi.updateTask(todolistId, taskId, model)
             .then((res) => {
