@@ -6,7 +6,7 @@ import {AppBar, Button, IconButton, Paper, Toolbar, Typography} from '@material-
 import {Menu} from '@material-ui/icons';
 import {
     addTodolistAC, addTodolistsTC,
-    changeTodolistFilterAC,
+    changeTodolistFilterAC, changeTodolistsTitleTC,
     changeTodolistTitleAC, fetchTodolistsTC, FilterValueType,
     removeTodolistAC, removeTodolistsTC, TodolistDomainType,
 } from './state/todolistsReducer/todolistsReducer';
@@ -44,7 +44,7 @@ export const AppWithRedux = () => {
     }, [dispatch])
 
     const addTask = useCallback((title: string, tlId: string) => {
-        dispatch(addTaskTC(tlId,title))
+        dispatch(addTaskTC(tlId, title))
     }, [dispatch])
 
     const changeStatus = useCallback((id: string, status: TaskStatuses, tlId: string) => {
@@ -62,8 +62,9 @@ export const AppWithRedux = () => {
         dispatch(action)
     }, [dispatch])
     const changeTodoTitle = useCallback((title: string, tlId: string) => {
-        dispatch(changeTodolistTitleAC(title, tlId))
+        dispatch(changeTodolistsTitleTC(tlId, title))
     }, [dispatch])
+
     const addTodo = useCallback((title: string) => {
         const action = addTodolistsTC(title)
         dispatch(action)

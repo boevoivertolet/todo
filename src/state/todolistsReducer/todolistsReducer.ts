@@ -72,7 +72,7 @@ export const addTodolistAC = (todolist: TodolistType): AddTodolistActionType => 
         type: 'ADD-TODOLIST', todolist
     } as const
 }
-export const changeTodolistTitleAC = (title: string, id: string): ChangeTodolistTitleActionType => {
+export const changeTodolistTitleAC = (id: string, title: string): ChangeTodolistTitleActionType => {
     return {
         type: 'CHANGE-TODOLIST-TITLE', id: id, title: title
     } as const
@@ -115,6 +115,15 @@ export const addTodolistsTC = (title: string) => {
             })
     }
 }
+export const changeTodolistsTitleTC = (id: string, title: string) => {
+    return (dispatch: Dispatch<AppActionsType>) => {
+        todolistsApi.updateTodolist(id, title)
+            .then(res => {
+                dispatch(changeTodolistTitleAC(id, title))
+            })
+    }
+}
+
 
 
 
