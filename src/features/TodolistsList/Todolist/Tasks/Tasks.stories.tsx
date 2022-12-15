@@ -1,7 +1,7 @@
 import React from 'react';
 import {action} from '@storybook/addon-actions';
 import {Tasks} from './Tasks';
-import {TaskPriorities, TaskStatuses} from '../api/todolists-api';
+import {TaskPriorities, TaskStatuses} from '../../../../api/todolists-api';
 
 
 export default {
