@@ -3,16 +3,7 @@ import {Dispatch} from 'redux';
 import {AppActionsType} from '../store';
 
 
-export type TodolistsActionType =
-    | ReturnType<typeof removeTodolistAC>
-    | ReturnType<typeof addTodolistAC>
-    | ReturnType<typeof changeTodolistTitleAC>
-    | ReturnType<typeof changeTodolistFilterAC>
-    | ReturnType<typeof setTodolistAC>
-
 const initialState: Array<TodolistDomainType> = []
-export type FilterValueType = 'active' | 'all' | 'completed'
-export type TodolistDomainType = TodolistType & { filter: FilterValueType }
 
 
 export const todolistsReducer = (state: Array<TodolistDomainType> = initialState, action: AppActionsType): Array<TodolistDomainType> => {
@@ -20,16 +11,13 @@ export const todolistsReducer = (state: Array<TodolistDomainType> = initialState
         case 'REMOVE-TODOLIST':
             return state.filter(tl => tl.id !== action.id)
         case 'ADD-TODOLIST':
-            const newTodolist: TodolistDomainType = {...action.todolist, filter: 'all'}
-            return [newTodolist, ...state]
+            return [{...action.todolist, filter: 'all'}, ...state]
         case 'CHANGE-TODOLIST-TITLE':
             return state.map(tl => tl.id === action.id ? {...tl, title: action.title} : tl)
         case 'CHANGE-TODOLIST-FILTER':
             return state.map(tl => tl.id === action.id ? {...tl, filter: action.filter} : tl)
         case 'SET-TODOLIST':
-            return action.todolists.map(tl => {
-                return {...tl, filter: 'all'}
-            })
+            return action.todolists.map(tl => ({...tl, filter: 'all'}))
         default:
             return state
     }
@@ -76,6 +64,12 @@ export const changeTodolistsTitleTC = (id: string, title: string) => (dispatch: 
         })
 }
 
-
-
-
+//types
+export type FilterValueType = 'active' | 'all' | 'completed'
+export type TodolistDomainType = TodolistType & { filter: FilterValueType }
+export type TodolistsActionType =
+    | ReturnType<typeof removeTodolistAC>
+    | ReturnType<typeof addTodolistAC>
+    | ReturnType<typeof changeTodolistTitleAC>
+    | ReturnType<typeof changeTodolistFilterAC>
+    | ReturnType<typeof setTodolistAC>
