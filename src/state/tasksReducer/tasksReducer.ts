@@ -1,8 +1,3 @@
-import {
-    AddTodolistActionType,
-    RemoveTodolistActionType,
-    SetTodolistActionType
-} from '../todolistsReducer/todolistsReducer';
 import {TaskStatuses, TaskType, todolistsApi, UpdateTaskType} from '../../api/todolists-api';
 import {TasksStateType} from '../../AppWithRedux';
 import {AppActionsType, AppRootStateType} from '../store';
@@ -14,9 +9,6 @@ export type TasksActionType =
     | AddTaskActionType
     | ChangeTaskStatusActionType
     | ChangeTaskTitleActionType
-    | AddTodolistActionType
-    | RemoveTodolistActionType
-    | SetTodolistActionType
     | SetTasksActionType
 
 

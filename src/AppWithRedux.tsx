@@ -6,15 +6,14 @@ import {AppBar, Button, IconButton, Paper, Toolbar, Typography} from '@material-
 import {Menu} from '@material-ui/icons';
 import {
     addTodolistsTC,
-    changeTodolistFilterAC, changeTodolistsTitleTC,
-    fetchTodolistsTC, FilterValueType,
-    removeTodolistsTC, TodolistDomainType,
+    changeTodolistFilterAC,
+    changeTodolistsTitleTC,
+    fetchTodolistsTC,
+    FilterValueType,
+    removeTodolistsTC,
+    TodolistDomainType,
 } from './state/todolistsReducer/todolistsReducer';
-import {
-    addTaskTC,
-    changeTaskTitleAC,
-    removeTaskTC, updateTaskStatusTC, updateTaskTitleTC,
-} from './state/tasksReducer/tasksReducer';
+import {addTaskTC, removeTaskTC, updateTaskStatusTC, updateTaskTitleTC,} from './state/tasksReducer/tasksReducer';
 
 import {useAppDispatch, useAppSelector} from './state/store';
 import {TaskStatuses, TaskType} from './api/todolists-api';
