@@ -5,6 +5,9 @@ import {Menu} from '@material-ui/icons';
 import {TaskType} from '../api/todolists-api';
 import {TodolistsList} from '../features/TodolistsList/TodolistsList';
 import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar';
+import {useSelector} from 'react-redux';
+import {AppRootStateType} from './store';
+import {RequestStatusType} from './appReducer';
 
 
 export type TasksStateType = {
@@ -13,6 +16,8 @@ export type TasksStateType = {
 
 
 export const App = () => {
+    const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
+
     console.log('App is called')
 
     return (
@@ -28,7 +33,7 @@ export const App = () => {
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
-                <LinearProgress/>
+                {status === 'loading' && <LinearProgress/>}
             </AppBar>
             <div className="container">
                 <TodolistsList/>
