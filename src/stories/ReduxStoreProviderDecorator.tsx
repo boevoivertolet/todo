@@ -105,6 +105,10 @@ const initialGlobalState = {
                 todoListId: 'tlId2'
             }
         ]
+    },
+    app: {
+        status: 'idle' ,
+        error: null
     }
 }
 
