@@ -14,8 +14,11 @@ export type TasksStateType = {
     [key: string]: TaskType[]
 }
 
+type AppPropsType ={
+    demo?: boolean
+}
 
-export const App = () => {
+export const App: React.FC<AppPropsType> = ({demo = false}) => {
     const status = useSelector<AppRootStateType, RequestStatusType>(state => state.app.status)
 
     console.log('App is called')
@@ -36,7 +39,7 @@ export const App = () => {
                 {status === 'loading' && <LinearProgress/>}
             </AppBar>
             <div className="container">
-                <TodolistsList/>
+                <TodolistsList demo={demo}/>
             </div>
         </div>
     );

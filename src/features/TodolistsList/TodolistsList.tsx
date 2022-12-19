@@ -16,8 +16,10 @@ import {AddItemForm} from '../../components/AddItemForm/AddItemForm';
 import {Todolist} from './Todolist/Todolist';
 import {TasksStateType} from '../../app/App';
 
-type TodolistsListPropsType = {}
-export const TodolistsList: React.FC<TodolistsListPropsType> = (props) => {
+type TodolistsListPropsType = {
+    demo?: boolean
+}
+export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo = false}) => {
 
     const dispatch = useAppDispatch()
     const todolists = useAppSelector<Array<TodolistDomainType>>((state) => state.todolists)
@@ -25,6 +27,9 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = (props) => {
 
 
     useEffect(() => {
+        if (demo) {
+            return
+        }
         dispatch(fetchTodolistsTC());
     }, [])
 
@@ -80,6 +85,7 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = (props) => {
                         changeFilter={changeFilter}
                         removeTodolist={removeTodolist}
                         changeTodoTitle={changeTodoTitle}
+                        demo={demo}
                     />
                 </Paper>
             })

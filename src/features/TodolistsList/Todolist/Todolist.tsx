@@ -33,6 +33,9 @@ export const Todolist = React.memo(({demo = false , ...props}: TodolistComponent
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+        if(demo){
+            return
+        }
         console.log('render todolist')
         dispatch(fetchTasksTC(props.tlId));
     }, [])
