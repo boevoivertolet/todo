@@ -95,7 +95,8 @@ export const addTaskTC = (todolistId: string, title: string) => (dispatch: Dispa
         })
 }
 export const updateTaskStatusTC = (taskId: string, status: TaskStatuses, todolistId: string,) =>
-    (dispatch: Dispatch, getState: () => AppRootStateType) => {
+    (dispatch: Dispatch<AppActionsType | SetStatusActionsType>, getState: () => AppRootStateType) => {
+    dispatch(setStatusAC('loading'))
         const task = getState().tasks[todolistId].find(t => t.id === taskId)
         if (task) {
             const model: UpdateTaskType = {
@@ -110,6 +111,7 @@ export const updateTaskStatusTC = (taskId: string, status: TaskStatuses, todolis
             todolistsApi.updateTask(todolistId, taskId, model)
                 .then((res) => {
                     dispatch(changeTaskStatusAC(taskId, status, todolistId))
+                    dispatch(setStatusAC('succeeded'))
                 })
 
         }
