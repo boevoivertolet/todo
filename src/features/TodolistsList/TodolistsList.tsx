@@ -78,9 +78,7 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo = false}) 
                         removeTask={removeTask}
                         changeStatus={changeStatus}
                         changeTaskTitle={changeTaskTitle}
-                        title={tl.title}
-                        filter={tl.filter}
-                        tlId={tl.id}
+                        todolist={tl}
                         tasks={tasksForTodolist}
                         changeFilter={changeFilter}
                         removeTodolist={removeTodolist}

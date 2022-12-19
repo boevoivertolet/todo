@@ -4,9 +4,10 @@ import {Button, TextField} from '@material-ui/core';
 
 type AddItemFormComponentPropsType = {
     addItem: (title: string) => void
+    disabled?: boolean
 
 }
-export const AddItemForm = React.memo((props: AddItemFormComponentPropsType) => {
+export const AddItemForm = React.memo(({addItem, disabled = false}: AddItemFormComponentPropsType) => {
 
     console.log('AddItemForm is called')
     const [error, setError] = useState<string | null>('')
@@ -22,7 +23,7 @@ export const AddItemForm = React.memo((props: AddItemFormComponentPropsType) => 
             return;
         }
 
-        props.addItem(title)
+        addItem(title)
         setTitle('')
     }
     const addTaskForEnter = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -35,7 +36,7 @@ export const AddItemForm = React.memo((props: AddItemFormComponentPropsType) => 
         }
 
         if (e.key === 'Enter') {
-            props.addItem(title)
+            addItem(title)
             setTitle('')
 
         }
@@ -45,13 +46,14 @@ export const AddItemForm = React.memo((props: AddItemFormComponentPropsType) => 
         <div className={'texField'}>
             <div className={'textField-button'}>
                 <TextField
+                    disabled={disabled}
                     id="standard-basic" label="add todo"
                     className={error ? 'error' : ''}
                     value={title}
                     onChange={setTitleValue}
                     onKeyDown={addTaskForEnter}
                 />
-                <Button variant="contained" color="primary" onClick={addTask}>+</Button>
+                <Button disabled={disabled} variant="contained" color="primary" onClick={addTask}>+</Button>
             </div>
             {error && <div className={'error-message'}>{error}</div>}
         </div>
