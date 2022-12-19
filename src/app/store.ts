@@ -3,7 +3,7 @@ import {TodolistsActionType, todolistsReducer} from '../features/TodolistsList/t
 import {AnyAction, applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux';
 import thunk, {ThunkDispatch} from 'redux-thunk';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {appReducer} from './appReducer';
+import {appReducer, SetErrorActionsType, SetStatusActionsType} from './appReducer';
 
 
 const rootReducer = combineReducers({
@@ -22,6 +22,8 @@ export const useAppDispatch = () => useDispatch<ThunkAppDispatchType>()
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 
 export type AppActionsType = TodolistsActionType | TasksActionType
+
+export type ThunkDispatchType = AppActionsType | SetStatusActionsType | SetErrorActionsType
 
 
 // @ts-ignore
