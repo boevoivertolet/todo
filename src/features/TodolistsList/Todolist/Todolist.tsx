@@ -11,6 +11,7 @@ import {fetchTasksTC} from '../tasksReducer';
 
 
 type TodolistComponentPropsType = {
+    demo?: boolean
     title: string
     filter: FilterValueType
     changeFilter: (filter: FilterValueType, tlId: string) => void
@@ -24,8 +25,11 @@ type TodolistComponentPropsType = {
     changeTodoTitle: (title: string, tlId: string) => void
 }
 
-export const Todolist = React.memo((props: TodolistComponentPropsType) => {
+export const Todolist = React.memo(({demo = false , ...props}: TodolistComponentPropsType) => {
     console.log('Todolist is called')
+    // if (typeof props.demo === 'undefined') props.demo = false
+
+
     const dispatch = useAppDispatch()
 
     useEffect(() => {

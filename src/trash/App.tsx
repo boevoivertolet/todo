@@ -20,8 +20,8 @@ function App() {
 
 
     let [todolists, setTodolist] = useState<Array<TodolistDomainType>>([
-        {id: tlId1, title: 'what to learn', filter: 'all', addedDate: '', order: 0},
-        {id: tlId2, title: 'what to buy', filter: 'all', addedDate: '', order: 0},
+        {id: tlId1, title: 'what to learn', filter: 'all', addedDate: '', order: 0,requestStatus: 'idle'},
+        {id: tlId2, title: 'what to buy', filter: 'all', addedDate: '', order: 0,requestStatus: 'idle'},
 
     ])
 
@@ -140,7 +140,7 @@ function App() {
         setTasks({...tasks})
     }
     const addTodo = (title: string) => {
-        let todo: TodolistDomainType = {id: v1(), title: title, filter: 'all', addedDate: '', order: 0}
+        let todo: TodolistDomainType = {id: v1(), title: title, filter: 'all', addedDate: '', order: 0,requestStatus: 'idle'}
         setTodolist([...todolists, todo])
         setTasks({...tasks, [todo.id]: []})
     }

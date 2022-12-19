@@ -33,8 +33,8 @@ const AppWithReducers = () => {
     let tlId2 = v1()
 
     let [todolists, dispatchTodolists] = useReducer(todolistsReducer, [
-        {id: tlId1, title: 'what to learn', filter: 'all', addedDate: '', order: 0},
-        {id: tlId2, title: 'what to buy', filter: 'all', addedDate: '', order: 0},
+        {id: tlId1, title: 'what to learn', filter: 'all', addedDate: '', order: 0,requestStatus: 'idle'},
+        {id: tlId2, title: 'what to buy', filter: 'all', addedDate: '', order: 0,requestStatus: 'idle'},
 
     ])
 
