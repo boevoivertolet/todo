@@ -2,7 +2,8 @@ import {TaskStatuses, TaskType, todolistsApi, UpdateTaskType} from '../../api/to
 import {TasksStateType} from '../../app/App';
 import {AppActionsType, AppRootStateType, ThunkDispatchType} from '../../app/store';
 import {Dispatch} from 'redux';
-import {setAppErrorAC,  setAppStatusAC, SetStatusActionsType} from '../../app/appReducer';
+import {setAppErrorAC, setAppStatusAC, SetStatusActionsType} from '../../app/appReducer';
+import {handleServerAppError, handleServerNetworkError} from '../../utils/errorUtils';
 
 
 const initialState: TasksStateType = {}
@@ -57,12 +58,15 @@ export const setTasksAC = (tasks: Array<TaskType>, tlId: string) =>
 
 
 //thunks
-export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<AppActionsType | SetStatusActionsType>) => {
+export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch<ThunkDispatchType>) => {
     dispatch(setAppStatusAC('loading'))
     todolistsApi.getTasks(todolistId)
         .then(res => {
             dispatch(setTasksAC(res.data.items, todolistId))
             dispatch(setAppStatusAC('succeeded'))
+        })
+        .catch((error) => {
+            handleServerNetworkError(error, dispatch)
         })
 
 }
@@ -73,9 +77,11 @@ export const removeTaskTC = (todolistId: string, taskId: string) => (dispatch: D
             if (res.data.resultCode === 0) {
                 dispatch(removeTaskAC(taskId, todolistId))
                 dispatch(setAppStatusAC('succeeded'))
+            } else {
+                handleServerAppError(res.data, dispatch)
             }
-        }).catch((e) => {
-        console.log(e.message)
+        }).catch((error) => {
+        handleServerNetworkError(error, dispatch)
     })
 
 }
@@ -87,18 +93,15 @@ export const addTaskTC = (todolistId: string, title: string) => (dispatch: Dispa
                 dispatch(addTaskAC(res.data.data.item))
                 dispatch(setAppStatusAC('succeeded'))
             } else {
-                if (res.data.messages.length) {
-                    dispatch(setAppErrorAC(res.data.messages[0]))
-                } else {
-                    dispatch(setAppErrorAC('some error'))
-                }
-                dispatch(setAppStatusAC('failed'))
+                handleServerAppError(res.data, dispatch)
             }
         })
+        .catch((error) => {
+            handleServerNetworkError(error, dispatch)
+        })
 }
-export const updateTaskStatusTC = (taskId: string, status: TaskStatuses, todolistId: string,) =>
-    (dispatch: Dispatch<ThunkDispatchType>, getState: () => AppRootStateType) => {
-    dispatch(setAppStatusAC('loading'))
+export const updateTaskStatusTC = (taskId: string, status: TaskStatuses, todolistId: string,) => (dispatch: Dispatch<ThunkDispatchType>, getState: () => AppRootStateType) => {
+        dispatch(setAppStatusAC('loading'))
         const task = getState().tasks[todolistId].find(t => t.id === taskId)
         if (task) {
             const model: UpdateTaskType = {
@@ -112,8 +115,16 @@ export const updateTaskStatusTC = (taskId: string, status: TaskStatuses, todolis
             }
             todolistsApi.updateTask(todolistId, taskId, model)
                 .then((res) => {
-                    dispatch(changeTaskStatusAC(taskId, status, todolistId))
-                    dispatch(setAppStatusAC('succeeded'))
+                    if (res.data.resultCode === 0) {
+                        dispatch(changeTaskStatusAC(taskId, status, todolistId))
+                        dispatch(setAppStatusAC('succeeded'))
+                    } else {
+                        handleServerAppError(res.data, dispatch)
+                    }
+
+                })
+                .catch((error) => {
+                    handleServerNetworkError(error, dispatch)
                 })
 
         }
@@ -134,8 +145,15 @@ export const updateTaskTitleTC = (taskId: string, title: string, todolistId: str
             }
             todolistsApi.updateTask(todolistId, taskId, model)
                 .then((res) => {
-                    dispatch(changeTaskTitleAC(taskId, title, todolistId))
-                    dispatch(setAppStatusAC('succeeded'))
+                    if (res.data.resultCode === 0) {
+                        dispatch(changeTaskTitleAC(taskId, title, todolistId))
+                        dispatch(setAppStatusAC('succeeded'))
+                    } else {
+                        handleServerAppError(res.data, dispatch)
+                    }
+                })
+                .catch((error) => {
+                    handleServerNetworkError(error, dispatch)
                 })
 
         }
