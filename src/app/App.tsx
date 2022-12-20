@@ -8,6 +8,10 @@ import {ErrorSnackbar} from '../components/ErrorSnackbar/ErrorSnackbar';
 import {useSelector} from 'react-redux';
 import {AppRootStateType} from './store';
 import {RequestStatusType} from './appReducer';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {Login} from '../features/Login/Login';
+
+
 
 
 export type TasksStateType = {
@@ -24,24 +28,30 @@ export const App: React.FC<AppPropsType> = ({demo = false}) => {
     console.log('App is called')
 
     return (
-        <div className="App">
-            <AppBar position="static">
-                <ErrorSnackbar/>
-                <Toolbar>
-                    <IconButton edge="start" color="inherit" aria-label="menu">
-                        <Menu/>
-                    </IconButton>
-                    <Typography variant="h6">
-                        News
-                    </Typography>
-                    <Button color="inherit">Login</Button>
-                </Toolbar>
-                {status === 'loading' && <LinearProgress/>}
-            </AppBar>
-            <div className="container">
-                <TodolistsList demo={demo}/>
+        <BrowserRouter>
+            <div className="App">
+                <AppBar position="static">
+                    <ErrorSnackbar/>
+                    <Toolbar>
+                        <IconButton edge="start" color="inherit" aria-label="menu">
+                            <Menu/>
+                        </IconButton>
+                        <Typography variant="h6">
+                            News
+                        </Typography>
+                        <Button color="inherit">Login</Button>
+                    </Toolbar>
+                    {status === 'loading' && <LinearProgress/>}
+                </AppBar>
+                <div className="container">
+                    <Routes>
+                        <Route  path='/' element={<TodolistsList demo={demo}/>}/>
+                        <Route  path='/login' element={<Login/>}/>
+                    </Routes>
+                </div>
             </div>
-        </div>
+        </BrowserRouter>
+
     );
 }
 
