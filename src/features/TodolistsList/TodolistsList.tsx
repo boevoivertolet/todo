@@ -15,6 +15,7 @@ import {Paper} from '@material-ui/core';
 import {AddItemForm} from '../../components/AddItemForm/AddItemForm';
 import {Todolist} from './Todolist/Todolist';
 import {TasksStateType} from '../../app/App';
+import {Navigate} from 'react-router-dom';
 
 type TodolistsListPropsType = {
     demo?: boolean
@@ -24,10 +25,11 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo = false}) 
     const dispatch = useAppDispatch()
     const todolists = useAppSelector<Array<TodolistDomainType>>((state) => state.todolists)
     const tasks = useAppSelector<TasksStateType>(state => state.tasks)
+    const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
 
 
     useEffect(() => {
-        if (demo) {
+        if (demo || !isLoggedIn) {
             return
         }
         dispatch(fetchTodolistsTC());
@@ -63,6 +65,10 @@ export const TodolistsList: React.FC<TodolistsListPropsType> = ({demo = false}) 
     const changeFilter = useCallback((filter: FilterValueType, tlId: string) => {
         dispatch(changeTodolistFilterAC(filter, tlId))
     }, [dispatch])
+
+    if (!isLoggedIn) {
+        return <Navigate to={'/login'}/>
+    }
 
     return <>
         <Paper elevation={3} className={'addItem'}><AddItemForm addItem={addTodo}/></Paper>

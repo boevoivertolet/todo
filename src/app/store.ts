@@ -3,7 +3,7 @@ import {TodolistsActionType, todolistsReducer} from '../features/TodolistsList/t
 import {AnyAction, applyMiddleware, combineReducers, legacy_createStore as createStore} from 'redux';
 import thunk, {ThunkDispatch} from 'redux-thunk';
 import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
-import {appReducer, SetErrorActionsType, SetStatusActionsType} from './appReducer';
+import {AppActionsType, appReducer, SetErrorActionsType, SetStatusActionsType} from './appReducer';
 import {AuthActionType, authReducer} from '../features/Login/authReducer';
 
 
@@ -24,9 +24,9 @@ export type ThunkAppDispatchType = ThunkDispatch<AppRootStateType, any, AnyActio
 export const useAppDispatch = () => useDispatch<ThunkAppDispatchType>()
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 
-export type AppActionsType = TodolistsActionType | TasksActionType
+export type RootAppActionsType = TodolistsActionType | TasksActionType | AuthActionType | AppActionsType
 
-export type ThunkDispatchType = AppActionsType | SetStatusActionsType | SetErrorActionsType | AuthActionType
+export type ThunkDispatchType = RootAppActionsType | SetStatusActionsType | SetErrorActionsType
 
 
 // @ts-ignore

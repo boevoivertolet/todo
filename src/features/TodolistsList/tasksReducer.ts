@@ -1,6 +1,6 @@
 import {TaskStatuses, TaskType, todolistsApi, UpdateTaskType} from '../../api/todolists-api';
 import {TasksStateType} from '../../app/App';
-import {AppActionsType, AppRootStateType, ThunkDispatchType} from '../../app/store';
+import {RootAppActionsType, AppRootStateType, ThunkDispatchType} from '../../app/store';
 import {Dispatch} from 'redux';
 import {setAppErrorAC, setAppStatusAC, SetStatusActionsType} from '../../app/appReducer';
 import {handleServerAppError, handleServerNetworkError} from '../../utils/errorUtils';
@@ -8,7 +8,7 @@ import {handleServerAppError, handleServerNetworkError} from '../../utils/errorU
 
 const initialState: TasksStateType = {}
 
-export const tasksReducer = (state: TasksStateType = initialState, action: AppActionsType): TasksStateType => {
+export const tasksReducer = (state: TasksStateType = initialState, action: RootAppActionsType): TasksStateType => {
     switch (action.type) {
         case 'REMOVE-TASK':
             return {...state, [action.tlId]: state[action.tlId].filter(t => t.id !== action.tId)}

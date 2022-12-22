@@ -5,7 +5,7 @@ beforeEach(() => {
     startState = {
         error: null,
         status: 'idle',
-        initialized: false
+        isInitialized: false
     }
 })
 test('correct error message should be set', () => {
