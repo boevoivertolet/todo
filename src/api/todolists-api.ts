@@ -14,7 +14,7 @@ export const todolistsApi = {
         return instance.get<Array<TodolistType>>('todo-lists')
     },
     createTodolist(title: string) {
-        return instance.post<ResponseType<{item: TodolistType}>>('todo-lists', {title})
+        return instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title})
     },
     deleteTodolist(id: string) {
         return instance.delete<ResponseType>(`todo-lists/${id}`, settings)
@@ -36,6 +36,20 @@ export const todolistsApi = {
     }
 }
 
+
+export type LoginParamsType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
+}
+export const authApi = {
+    login(data: LoginParamsType) {
+        return instance.post<ResponseType<{ userId?: number }>>('auth/login', data)
+    }
+}
+
+
 //types
 
 export type TodolistType = {
@@ -49,12 +63,14 @@ export type ResponseType<D = {}> = {
     messages: Array<string>
     data: D
 }
+
 export enum TaskStatuses {
     New = 0,
     inProgress = 1,
     Completed = 2,
     Draft = 3
 }
+
 export enum TaskPriorities {
     Low = 0,
     Middle = 1,
@@ -62,6 +78,7 @@ export enum TaskPriorities {
     Urgently = 3,
     Later = 4
 }
+
 export type TaskType = {
     description: string
     title: string
